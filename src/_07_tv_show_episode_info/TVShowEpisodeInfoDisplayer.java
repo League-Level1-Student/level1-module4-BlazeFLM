@@ -17,16 +17,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class TVShowEpisodeInfoDisplayer implements ActionListener {
-	JTextField field = new JTextField();
+	JTextField field = new JTextField("                                  ");
 	JFrame frame = new JFrame("TV Show Info");
 	JPanel panel = new JPanel();
 	JButton button = new JButton("Submit");
 	public TVShowEpisodeInfoDisplayer() {
-		panel.add(button);
+		frame.setVisible(true);
+		frame.setSize(250,100);
 		panel.add(field);
+		panel.add(button);
 		button.addActionListener(this);
 		frame.add(panel);
-		frame.pack();
+		
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
