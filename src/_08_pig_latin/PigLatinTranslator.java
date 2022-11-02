@@ -19,8 +19,8 @@ public class PigLatinTranslator implements ActionListener {
 	 */
 	JFrame frame = new JFrame("Pig Latin Translator");
 	JPanel panel = new JPanel();
-	JTextField field1 = new JTextField("                  ");
-	JTextField field2 = new JTextField("                  ");
+	JTextField field1 = new JTextField(10);
+	JTextField field2 = new JTextField(10);
 	JButton leftButton = new JButton(">>");
 	JButton rightButton = new JButton("<<");
 	JButton speak = new JButton("speak");
@@ -44,9 +44,11 @@ public class PigLatinTranslator implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		if (arg0.getSource() == leftButton) {
-			translateEnglishToPigLatin(field1.getText());
+		String translatedPig = translateEnglishToPigLatin(field1.getText()); 
+		field2.setText(translatedPig);
 		} else if (arg0.getSource() == rightButton) {
-			translatePigLatinToEnglish(field2.getText());
+		String translatedEng = translatePigLatinToEnglish(field2.getText());
+		field1.setText(translatedEng);
 		} else if (arg0.getSource() == speak) {
 			Sound.speak(field2.getText());
 		}
