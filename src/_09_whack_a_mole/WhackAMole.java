@@ -1,5 +1,6 @@
 package _09_whack_a_mole;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -13,34 +14,35 @@ public class WhackAMole implements ActionListener {
 	JPanel panel = new JPanel();
 	JButton button = new JButton();
 	Random rand = new Random();
-	int ran = rand.nextInt(23);
 	
 	void whackyMole() {
-		frame.setVisible(true);
-		button.addActionListener(this);
-		frame.setSize(400, 800);
+		int ran = rand.nextInt(23);
 	drawButtons(ran);
 	}
 
 	void drawButtons(int random) {
-		frame.removeAll();
+		frame.dispose();
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setSize(400, 800);
 		panel = new JPanel();
+		panel.setLayout(new GridLayout(5,5));
 		for (int i = 0; i < 23; i++) {
 			JButton button2 = new JButton();
 			panel.add(button2);
 			button2.addActionListener(this);
-			if (i == ran) {
+			if (i == random) {
 				button = button2;
 				button.setText("Mole");
 			}
 		}
 		frame.add(panel);
-		frame.setSize(400,800);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		int ran = rand.nextInt(23);
 		if (arg0.getSource() == button) {
 			drawButtons(ran);
 		} else {
