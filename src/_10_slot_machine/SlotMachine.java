@@ -11,10 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class SlotMachine implements ActionListener {
-	JFrame frame = new JFrame("Slot Machine");
+	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JButton button = new JButton("Spin that!");
 	JLabel slot1 = new JLabel();
@@ -22,12 +23,16 @@ public class SlotMachine implements ActionListener {
 	JLabel slot3 = new JLabel();
 	Random rand = new Random();
 
+	public SlotMachine() {
+		button.addActionListener(this);
+	}
+
 	void pictures() {
 		frame.dispose();
+		frame = new JFrame("Slot Machine");
 		panel = new JPanel();
 		frame.setVisible(true);
 		panel.add(button);
-		button.addActionListener(this);
 		spinSlots();
 		panel.add(slot1);
 		panel.add(slot2);
@@ -35,7 +40,6 @@ public class SlotMachine implements ActionListener {
 		panel.add(button);
 		frame.add(panel);
 		frame.pack();
-
 	}
 
 	void spinSlots() {
@@ -70,17 +74,23 @@ public class SlotMachine implements ActionListener {
 			if (three == 2) {
 				slot3 = createLabelImage("seven.jpg");
 			}
+			System.out.println(one + " " + two + " " + three);
 
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (one == two && two == three) {
+			JOptionPane.showMessageDialog(null, "Jackpot Baby!");
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		spinSlots();
+		if (arg0.getSource() == button) {
+			pictures();
+		}
 	}
 
 	private JLabel createLabelImage(String fileName) throws MalformedURLException {
