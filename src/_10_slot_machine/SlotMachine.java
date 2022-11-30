@@ -22,6 +22,8 @@ public class SlotMachine implements ActionListener {
 	JLabel slot2 = new JLabel();
 	JLabel slot3 = new JLabel();
 	Random rand = new Random();
+	JLabel counter = new JLabel();
+	int winCount = 0;
 
 	public SlotMachine() {
 		button.addActionListener(this);
@@ -38,6 +40,7 @@ public class SlotMachine implements ActionListener {
 		panel.add(slot2);
 		panel.add(slot3);
 		panel.add(button);
+		panel.add(counter);
 		frame.add(panel);
 		frame.pack();
 	}
@@ -82,7 +85,9 @@ public class SlotMachine implements ActionListener {
 		}
 		if (one == two && two == three) {
 			JOptionPane.showMessageDialog(null, "Jackpot Baby!");
-		}
+			winCount++;
+			counter.setText(winCount + "");
+		} 
 	}
 
 	@Override
